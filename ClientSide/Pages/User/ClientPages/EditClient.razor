@@ -1,0 +1,116 @@
+﻿@page  "/editclient/{Id}"
+@page "/createClient"
+@using TicketSystem.Models.ClientModels
+@using TicketSystem.Pages.User.GenericClasses
+@inherits EditGenericBase<Client, EditClientModel>
+
+
+
+
+
+<h3>@PageHeader</h3>
+
+<EditForm Model="@editModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator/>
+ 
+    @*<ObjectGraphDataAnnotationsValidator>
+
+        </ObjectGraphDataAnnotationsValidator>*@
+
+
+    <hr />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label for="companyName" class="col-sm-2 col-form-label">
+            Company Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="companyName" class="form-control" placeholder="Company Name"
+                       @bind-Value="editModel.companyName" />
+            <ValidationMessage For="@(() => editModel.companyName)" />
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label for="address1" class="col-sm-2 col-form-label">
+            Address 1
+        </label>
+        <div class="col-sm-10">
+            <InputText id="address1" class="form-control" placeholder="Address 1"
+                       @bind-Value="editModel.address1" />
+            <ValidationMessage For="@(() => editModel.address1)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="address2" class="col-sm-2 col-form-label">
+            Address 2
+        </label>
+        <div class="col-sm-10">
+            <InputText id="address2" class="form-control" placeholder="Address 2"
+                       @bind-Value="editModel.address2" />
+            <ValidationMessage For="@(() => editModel.address2)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="country" class="col-sm-2 col-form-label">
+            Country
+        </label>
+        <div class="col-sm-10">
+            <InputText id="country" class="form-control" placeholder="Country"
+                       @bind-Value="editModel.Country" />
+            <ValidationMessage For="@(() => editModel.Country)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="province" class="col-sm-2 col-form-label">
+            Province
+        </label>
+        <div class="col-sm-10">
+            <InputText id="province" class="form-control" placeholder="Province"
+                       @bind-Value="editModel.province" />
+            <ValidationMessage For="@(() => editModel.province)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label">
+            City
+        </label>
+        <div class="col-sm-10">
+            <InputText id="city" class="form-control" placeholder="City"
+                       @bind-Value="editModel.city" />
+            <ValidationMessage For="@(() => editModel.city)" />
+        </div>
+    </div>
+
+
+
+
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    @if (editModel.Id != new Guid())
+    {
+
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">
+            Delete
+        </button>
+    }
+
+    <Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+             ConfirmationMessage=@($"Are you sure you want to delete the Client \"{Entity.companyName}\" ")>
+    </Confirm>
+
+
+</EditForm>
+
+
+<div>
+    <p>@result</p>
+    <p>@myID</p>
+    <p>@Id</p>
+</div>

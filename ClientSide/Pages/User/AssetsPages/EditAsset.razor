@@ -1,0 +1,77 @@
+﻿@page "/editasset/{Id}"
+@page "/createasset"
+@inherits EditGenericBase<Asset, EditAssetModel>
+
+@using TicketSystem.Pages.User.GenericClasses
+@using Models.AssetModels 
+@using System.ComponentModel.DataAnnotations
+@using System.Dynamic
+
+
+<h3>@PageHeader</h3>
+
+<EditForm Model="@editModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    @*<ObjectGraphDataAnnotationsValidator>
+
+        </ObjectGraphDataAnnotationsValidator>*@
+
+
+    <hr />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label for="assetName" class="col-sm-2 col-form-label">
+            Asset Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="assetName" class="form-control" placeholder="Asset Name"
+                       @bind-Value="editModel.AssetName" />
+            <ValidationMessage For="@(() => editModel.AssetName)" />
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label for="assetType" class="col-sm-2 col-form-label">
+            Type of Asset
+        </label>
+        <div class="col-sm-10">
+            <InputText id="assetType" class="form-control" placeholder="Asset Type"
+                       @bind-Value="editModel.AssetType" />
+            <ValidationMessage For="@(() => editModel.AssetType)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="serialNumber" class="col-sm-2 col-form-label">
+            Serial Number
+        </label>
+        <div class="col-sm-10">
+            <InputText id="serialNumber" class="form-control" placeholder="Serial Number"
+                       @bind-Value="editModel.SerialNumber" />
+            <ValidationMessage For="@(() => editModel.SerialNumber)" />
+        </div>
+    </div>
+
+
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    @if (editModel.Id != new Guid())
+    {
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">
+            Delete
+        </button>
+    }
+
+    <Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+             ConfirmationMessage=@($"Are you sure you want to delete the Asset: \"{Entity.AssetName}\"")>
+    </Confirm>
+
+
+</EditForm>
+
+
+@code {
+
+}

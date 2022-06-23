@@ -1,0 +1,224 @@
+﻿@page "/home"
+
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+<style>
+    body {
+        background: #eee;
+    }
+
+    .card-box {
+        position: relative;
+        color: #fff;
+        padding: 20px 10px 40px;
+        margin: 20px 0px;
+    }
+
+        .card-box:hover {
+            text-decoration: none;
+            color: #f1f1f1;
+        }
+
+            .card-box:hover .icon i {
+                font-size: 100px;
+                transition: 1s;
+                -webkit-transition: 1s;
+            }
+
+        .card-box .inner {
+            padding: 5px 10px 0 10px;
+        }
+
+        .card-box h3 {
+            font-size: 27px;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+            white-space: nowrap;
+            padding: 0;
+            text-align: left;
+        }
+
+        .card-box p {
+            font-size: 15px;
+        }
+
+        .card-box .icon {
+            position: absolute;
+            top: auto;
+            bottom: 5px;
+            right: 5px;
+            z-index: 0;
+            font-size: 72px;
+            color: rgba(0, 0, 0, 0.15);
+        }
+
+        .card-box .card-box-footer {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            text-align: center;
+            padding: 3px 0;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .card-box:hover .card-box-footer {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+    .bg-blue {
+        background-color: #00c0ef !important;
+    }
+
+    .bg-green {
+        background-color: #00a65a !important;
+    }
+
+    .bg-orange {
+        background-color: #f39c12 !important;
+    }
+
+    .bg-red {
+        background-color: #d9534f !important;
+    }
+
+    .button {
+        border: none;
+    }
+</style>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="wwwroot/css/dashboard.css" rel="stylesheet" type="text/css" />
+<div class="container">
+    <div>
+        <h3>Dashboard</h3>
+    </div>
+    <br />
+    <div class="row">
+        @*Summary Content*@
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-red">
+                <div class="inner">
+                    <h3> 10 </h3>
+                    <p> Notifications </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-red">
+                <div class="inner">
+                    <h3> 10 </h3>
+                    <p> General Tickets </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-ticket" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-red">
+                <div class="inner">
+                    <h3> 10 </h3>
+                    <p> Support Tickets </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-ticket" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-red">
+                <div class="inner">
+                    <h3> 10 </h3>
+                    <p> Hosting Tickets </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-ticket"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        @*List Content*@
+        <div>
+            <h5>Recent Tickets</h5>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Ticket No#</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Date Launched</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>My website hosted on you cPanel is down</td>
+                    <td>05/11/2021</td>
+                    <td><button type="button" class="btn btn-success">Progress</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>The newley replaced switch isn't working properly'</td>
+                    <td>05/11/2021</td>
+                    <td><button type="button" class="btn btn-warning">Open</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Cannot access the server</td>
+                    <td>05/11/2021</td>
+                    <td><button type="button" class="btn btn-info">On Hold</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Request for office Installation</td>
+                    <td>05/11/2021</td>
+                    <td><button type="button" class="btn btn-danger">Closed</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        @*Other Content*@
+        <div>
+            <h5>Other Content</h5>
+        </div>
+        <p>Other content Here</p>
+    </div>
+</div>
+
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        @*await sessionStorage.SetItemAsync("token", token);
+            await sessionStorage.SetItemAsync("refreshToken", refreshToken);
+            await sessionStorage.SetItemAsync("name", "John Smith");
+        *@
+        var token = await sessionStorage.GetItemAsync<string>("token");
+        var rtoken = await sessionStorage.GetItemAsync<string>("refreshToken");
+
+        Console.WriteLine("token: \n" + token);
+        Console.WriteLine("refreshtoken: \n" + rtoken);
+
+        // if(string.IsNullOrEmpty(tok))
+
+    }
+
+}

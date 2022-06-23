@@ -1,0 +1,53 @@
+﻿@page "/agreementsList"
+@using Models.AgreementModels
+@inherits User.GenericClasses.GenericListBase<Agreement>
+
+<h3>List of Agreements</h3>
+
+
+
+@if (entities == null)
+{
+    <div class="spinner"></div>
+}
+
+else
+{
+
+    <p>Total number of Agreements @entities.Count()</p>
+
+
+    <div>
+        <table class="table table-hover">
+            <tr>
+                <td><b>Agreement #</b></td>
+                <td><b>Agreement Type</b></td>
+                <td><b>Description</b></td>
+                <td><b>User Name/ID</b></td>
+                <td><b>Action</b></td>
+            </tr>
+
+
+            @foreach (var Agreement in entities)
+            {
+                <tr>
+                    <td>@Agreement.Id</td>
+                    <td>@Agreement.AgreeType</td>
+                    <td>@Agreement.Description</td>
+                    <td>@Agreement.UserFKId</td>
+                    <td>
+                        <a href="editAgreement/@Agreement.Id.ToString()" class="col-form-label">Edit |</a>
+                        @* <a href="#" class="col-form-label" >View |</a>*@
+                        <a href="#" class="col-form-label"> Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+}
+
+    @code {
+
+    }

@@ -1,0 +1,51 @@
+﻿@page "/ticketlist"
+@inherits TicketListBase
+
+
+<h3>Tickets List</h3>
+
+@if (Tickets == null)
+{
+    <div class="spinner"></div>
+}
+
+else
+{
+    
+   <p>Total number of tickets @Tickets.Count()</p>
+        
+    
+    <div>
+        <table class="table table-hover">
+            <tr>
+                <td><b>Ticket #</b></td>
+                <td><b>Contact</b></td>
+                <td><b>Subject</b></td>
+                <td><b>Type</b></td>
+                <td><b> Action</b></td>
+            </tr>
+
+
+            @foreach (var ticket in Tickets)
+            {
+                <tr>
+                    <td>@ticket.Id</td>
+                    <td>@ticket.Contact</td>
+                    <td>@ticket.Subject</td>
+                    <td>@ticket.Type</td>
+                    <td> 
+                        <a href="editticket/@ticket.Id.ToString()" class="col-form-label">Edit |</a>
+                       @* <a href="#" class="col-form-label" >View |</a>*@
+                        <a href="#" class="col-form-label"> Delete</a>
+                     </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+}
+@code {
+
+
+}

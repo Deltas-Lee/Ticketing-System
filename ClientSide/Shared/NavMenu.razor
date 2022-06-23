@@ -1,0 +1,164 @@
+﻿
+@inject NavigationManager NavigationManager;
+
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="index" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="()=>expandSubNav3 = !expandSubNav3">
+                <span class="oi oi-people" aria-hidden="true"></span> Clients
+            </NavLink>
+            @if (expandSubNav3)
+            {
+                <ul>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="createclient">
+                            <span class="oi oi-person" aria-hidden="true"></span> Add Client
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="clientslist">
+                            <span class="oi oi-list" aria-hidden="true"></span>All-Clients
+                        </NavLink>
+                    </li>
+                </ul>
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="user/userprofile">
+                <span class="oi oi-person" aria-hidden="true"></span> Profile
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="report">
+                <span class="oi oi-book" aria-hidden="true"></span> Reports
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="()=>expandSubNav = !expandSubNav">
+                <span class="oi oi-plus" aria-hidden="true"></span> Tickets
+            </NavLink>
+            @if (expandSubNav)
+            {
+                <ul>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="createticket">
+                            <span class="oi oi-file" aria-hidden="true"></span> Create Ticket
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="ticketslist">
+                            <span class="oi oi-task" aria-hidden="true"></span>All-Tickets
+                        </NavLink>
+                    </li>
+                </ul>
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="()=>expandSubNav1 = !expandSubNav1">
+                <span class="oi oi-laptop" aria-hidden="true"></span> Device
+            </NavLink>
+            @if (expandSubNav1)
+            {
+                <ul>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="createasset">
+                            <span class="oi oi-laptop" aria-hidden="true"></span> Add Asset
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="assetslist">
+                            <span class="oi oi-calculator" aria-hidden="true"></span>All-Assets
+                        </NavLink>
+                    </li>
+                </ul>
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="()=>expandSubNav2 = !expandSubNav2">
+                <span class="oi oi-briefcase" aria-hidden="true"></span> Contracts
+            </NavLink>
+            @if (expandSubNav2)
+            {
+                <ul>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="createagreement">
+                            <span class="oi oi-pencil" aria-hidden="true"></span> Add Contracts
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="agreementsList">
+                            <span class="oi oi-book" aria-hidden="true"></span>All-Contracts
+                        </NavLink>
+                    </li>
+                </ul>
+            }
+            </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="()=>expandSubNav4 = !expandSubNav4">
+                <span class="oi oi-plus" aria-hidden="true"></span> Contacts
+            </NavLink>
+            @if (expandSubNav4)
+            {
+                <ul>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="createcontact">
+                            <span class="oi oi-file" aria-hidden="true"></span> Create Contact
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="navbar-expand-md" href="contactslist">
+                            <span class="oi oi-task" aria-hidden="true"></span>All-Contacts
+                        </NavLink>
+                    </li>
+                </ul>
+                }
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="#">
+                <span class="oi oi-question-mark" aria-hidden="true"></span> Invoice
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="admin">
+                <span class="oi oi-people" aria-hidden="true"></span> Admin
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="login">
+                <span class="oi oi-account-logout" aria-hidden="true"></span> Log Out
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+
+    private bool expandSubNav;
+    private bool expandSubNav1;
+    private bool expandSubNav2;
+    private bool expandSubNav3;
+    private bool expandSubNav4;
+
+    private bool collapseNavMenu;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void HandleClick()
+    {
+        NavigationManager.NavigateTo("editticket", true);
+    }
+}

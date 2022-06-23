@@ -1,0 +1,116 @@
+﻿@page  "/editcontact/{Id}"
+@page "/createContact"
+@using TicketSystem.Models.ContactModels
+@using TicketSystem.Pages.User.GenericClasses
+@inherits EditGenericBase<Contact, EditContactModel>
+
+
+
+
+
+<h3>@PageHeader</h3>
+
+<EditForm Model="@editModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+
+    @*<ObjectGraphDataAnnotationsValidator>
+
+        </ObjectGraphDataAnnotationsValidator>*@
+
+
+    <hr />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label for="FirstName" class="col-sm-2 col-form-label">
+            First Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="FirstName" class="form-control" placeholder="FirstName"
+                       @bind-Value="editModel.FirstName" />
+            <ValidationMessage For="@(() => editModel.FirstName)" />
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label for="LastName" class="col-sm-2 col-form-label">
+            Last Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="LastName" class="form-control" placeholder="LastName"
+                       @bind-Value="editModel.LastName" />
+            <ValidationMessage For="@(() => editModel.LastName)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="JobTitle" class="col-sm-2 col-form-label">
+            Job Title
+        </label>
+        <div class="col-sm-10">
+            <InputText id="JobTitle" class="form-control" placeholder="JobTitle"
+                       @bind-Value="editModel.JobTitle" />
+            <ValidationMessage For="@(() => editModel.JobTitle)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="IsContactPerson" class="col-sm-2 col-form-label">
+            Is Contact Person
+        </label>
+        <div class="col-sm-10">
+            <InputText id="IsContactPerson" class="form-control" placeholder="IsContactPerson"
+                       @bind-Value="editModel.IsContactPerson" />
+            <ValidationMessage For="@(() => editModel.IsContactPerson)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="InIgnoreMode" class="col-sm-2 col-form-label">
+            In Ignore Mode
+        </label>
+        <div class="col-sm-10">
+            <InputText id="InIgnoreMode" class="form-control" placeholder="InIgnoreMode"
+                       @bind-Value="editModel.InIgnoreMode" />
+            <ValidationMessage For="@(() => editModel.InIgnoreMode)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Phone" class="col-sm-2 col-form-label">
+            Phone
+        </label>
+        <div class="col-sm-10">
+            <InputText id="Phone" class="form-control" placeholder="Phone"
+                       @bind-Value="editModel.Phone" />
+            <ValidationMessage For="@(() => editModel.Phone)" />
+        </div>
+    </div>
+
+
+
+
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    @if (editModel.Id != new Guid())
+    {
+
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">
+            Delete
+        </button>
+    }
+
+    <Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+             ConfirmationMessage=@($"Are you sure you want to delete this Contact \"{Entity.Id}\" ")>
+    </Confirm>
+
+
+</EditForm>
+
+
+<div>
+    <p>@result</p>
+    <p>@myID</p>
+    <p>@Id</p>
+</div>

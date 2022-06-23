@@ -1,0 +1,133 @@
+﻿@page "/editticket/{Id}"
+@page "/createticket"
+
+@using System.ComponentModel.DataAnnotations
+@using TicketSystem.Models
+@using TicketSystem.Pages.User.GenericClasses
+@inherits EditGenericBase<Ticket, EditTicketModel>
+
+<h3>@PageHeader</h3>
+
+<EditForm Model="@editModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    @*<ObjectGraphDataAnnotationsValidator>
+
+        </ObjectGraphDataAnnotationsValidator>*@
+
+
+    <hr />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label for="contact" class="col-sm-2 col-form-label">
+            Contact
+        </label>
+        <div class="col-sm-10">
+            <InputText id="contact" class="form-control" placeholder="Contact"
+                       @bind-Value="editModel.Contact" />
+            <ValidationMessage For="@(() => editModel.Contact)" />
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label for="subject" class="col-sm-2 col-form-label">
+            Subject
+        </label>
+        <div class="col-sm-10">
+            <InputText id="subject" class="form-control" placeholder="Subject"
+                       @bind-Value="editModel.Subject" />
+            <ValidationMessage For="@(() => editModel.Subject)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="type" class="col-sm-2 col-form-label">
+            Problem type
+        </label>
+        <div class="col-sm-10">
+            <InputText id="type" class="form-control" placeholder="Problem/Issue"
+                       @bind-Value="editModel.Type" />
+            <ValidationMessage For="@(() => editModel.Type)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="status" class="col-sm-2 col-form-label">
+            Status
+        </label>
+        <div class="col-sm-10">
+            <InputSelect @bind-Value="editModel.Status" class="form-control">
+                <option value="@editModel.Status">Not started</option>
+                <option value="@editModel.Status">In progress</option>
+                <option value="@editModel.Status">Finished</option>
+            </InputSelect>
+        </div>
+
+    </div>
+
+
+    <div class="form-group row">
+        <label for="priority" class="col-sm-2 col-form-label">
+            Priority
+        </label>
+        <div class="col-sm-10">
+            <InputText id="priority" class="form-control" placeholder="Priority"
+                       @bind-Value="editModel.Priority" />
+            <ValidationMessage For="@(() => editModel.Priority)" />
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="description" class="col-sm-2 col-form-label">
+            Description
+        </label>
+        <div class="col-sm-10">
+            <InputText id="description" class="form-control" placeholder="Description"
+                       @bind-Value="editModel.Description" />
+            <ValidationMessage For="@(() => editModel.Description)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="dateCreated" class="col-sm-2 col-form-label">
+            Date Created
+        </label>
+        <div class="col-sm-10">
+            <InputDate id="dateCreated" class="form-control" placeholder="@DateTime.Now"
+                       @bind-Value="editModel.dateCreated" />
+            <ValidationMessage For="@(() => editModel.dateCreated)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="dueDate" class="col-sm-2 col-form-label">
+            Due Date
+        </label>
+        <div class="col-sm-10">
+            <InputDate id="dateCreated" class="form-control" placeholder="@DateTime.Now"
+                       @bind-Value="editModel.dueDate" />
+            <ValidationMessage For="@(() => editModel.dueDate)" />
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    @if (editModel.Id != new Guid())
+    {
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">
+            Delete
+        </button>
+    }
+
+    <Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+             ConfirmationMessage=@($"Are you sure you want to delete \"{Entity.Contact}\"")>
+    </Confirm>
+
+
+</EditForm>
+
+
+@code {
+
+}

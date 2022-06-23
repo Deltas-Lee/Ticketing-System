@@ -1,0 +1,95 @@
+﻿@page "/Register"
+@layout LoginLayout
+@inject NavigationManager navigationManager
+@using TicketSystem.Models
+@using TicketSystem.Pages.Identity.Pages.Models
+
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+@inject HttpClient HttpClient
+
+@code {
+
+    RegisterModel Input = new RegisterModel();
+    public string str = "not submiitred";
+    public string email;
+    public string token;
+    public string refreshToken;
+
+    private UserIdentity userIdentity;
+
+    public async Task RegisterUser()
+    {
+        str = "submitted";
+        var User = new RegisterModel { email = Input.email, username = Input.email, password = Input.password };
+
+        var response = await HttpClient.PostAsJsonAsync("https://localhost:44380/api/AuthManagement/Register", User);
+
+        if (response.IsSuccessStatusCode)
+        {
+            //navigationManager.NavigateTo("/");
+
+            userIdentity = await response.Content.ReadFromJsonAsync<UserIdentity>();
+            str = userIdentity.token;
+            token = userIdentity.token;
+            refreshToken = userIdentity.refreshToken;
+            email = Input.email;
+
+            await sessionStorage.SetItemAsync("token", token);
+            await sessionStorage.SetItemAsync("refreshToken", refreshToken);
+
+        }
+        else
+        {
+            str = response.ReasonPhrase;
+        }
+
+
+    }
+}
+
+
+                <p>@str</p>
+                <p>Email: @email</p>
+                <p>Token: @token</p>
+                <p>Refreshen Token: @refreshToken</p>
+
+           
+            
+
+
+                <EditForm Model=@Input OnValidSubmit="@RegisterUser" method="post">
+                    <DataAnnotationsValidator />
+                    <div class="container">
+                        <h1>Register</h1>
+                        <p>Please fill in this form to create an account.</p>
+                        <hr>
+
+
+                        <label><b>Email</b></label>
+                        <InputText @bind-Value="Input.email" placeholder="Enter Email" id="email" required class="form-control" />
+                        <span><ValidationMessage For="@(() => Input.email)" /></span>
+
+
+                        <label asp-for="Input.Password"><b>Password</b></label>
+                        <InputText @bind-Value="Input.password" placeholder="Enter Password" id="psw" required class="form-control" name="psw" type="password" />
+                        <span><ValidationMessage For="@(() => Input.password)" /></span>
+
+
+
+                        <label asp-for="Input.ConfirmPassword"><b>Confirm Password</b></label>
+                        <InputText @bind-Value="Input.ConfirmPassword" class="form-control" id="psw-repeat" placeholder="Confirm Password" required type="password" />
+                        <span><ValidationMessage For="@(() => Input.ConfirmPassword)" /></span>
+                        <hr>
+                        <p>By creating an account you agree to AOLC <a href="#">Terms & Privacy</a>.</p>
+
+                        <button type="submit" class="registerbtn" @onclick="RegisterUser" value="Register">Register</button>
+                    </div>
+
+                    @*<div class="container signin">
+            <p>Already have an account? <a href="#">Sign in</a>.</p>
+        </div>*@
+                </EditForm>

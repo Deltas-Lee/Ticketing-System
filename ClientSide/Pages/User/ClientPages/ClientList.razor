@@ -1,0 +1,50 @@
+﻿@page "/clientslist"
+@using TicketSystem.Models.ClientModels 
+@using TicketSystem.Pages.User.GenericClasses
+@inherits GenericListBase<Client>
+
+<h3>List of all Clients</h3>
+
+@if (entities == null)
+{
+    <div class="spinner"></div>
+}
+
+else
+{
+
+    <p>Total number of Clients @entities.Count()</p>
+
+
+    <div>
+        <table class="table table-hover">
+            <tr>
+                <td><b>client #</b></td>
+                <td><b>Company Name</b></td>
+                <td><b>Country</b></td>
+                <td><b>City</b></td>
+                <td><b>Address1</b></td>
+                <td><b>Action</b></td>
+            </tr>
+
+
+            @foreach (var client in entities)
+            {
+                <tr>
+                    <td>@client.Id</td>
+                    <td>@client.companyName</td>
+                    <td>@client.Country</td>
+                    <td>@client.city</td>
+                    <td>@client.address1</td>
+                    <td>
+                        <a href="editclient/@client.Id.ToString()" class="col-form-label">Edit |</a>
+                        @* <a href="#" class="col-form-label" >View |</a>*@
+                        <a href="#" class="col-form-label"> Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+}

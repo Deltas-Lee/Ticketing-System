@@ -1,0 +1,131 @@
+﻿@page "/admin/adminprofile"
+
+<style>
+   @*@import url(https://fonts.googleapis.com/css?family=Varela+Round);*@
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+    body {
+       /* background-color: #E5E7E9;*/
+        background-image: url('CLassvr-Blue.jpg');
+        font-family: "Varela Round", sans-serif;
+    }
+
+    .card {
+        align-items: flex-start;
+        justify-content: flex-start;
+        background: #E5E7E9;
+       /* box-shadow: 0 0 20px rgba(0,0,0,0.4);*/
+        width: 100%;
+        color: black;
+        float: initial;
+    }
+    .card1 {
+        background: #E5E7E9;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        border-radius: 5px;
+        margin: 50px 20px 20px 20px;
+        width: 100%;
+        padding: 20px;
+        text-align: left;
+        color: black;
+        float: left;
+        max-width: 768px;
+        margin: 10px 20px;
+        height: 200%;
+        margin-top: 20px;
+    }
+  .title {
+    font-size: 30px;
+  }
+  .icon {
+    margin: 50px 0;
+    width: 50%;
+    height: 70%;
+    text-align:center;
+    fill: red
+  }
+    .p {
+        text-align: left;
+        font-size: medium;
+        font: bold;
+    }
+    .icon1 {
+        margin: 50px 0;
+        width: 100px;
+        height: 100px;
+        fill: red;
+
+    }
+  .features {
+      padding: 0px;
+      margin: 20px 0 50px 0;
+      list-style-type: none;
+      text-align:left;
+      margin: 50px 10px;
+      font-size: 20px;
+      border-bottom:#6495ED;
+    }
+
+    .btn {
+        display: inline-block;
+        background: #6495ED;
+        color: white;
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+        box-shadow: rgba(0,0,0,0.9);
+        transition: all 200ms ease-in-out;
+        text-decoration: none;
+    }
+</style>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="card">
+    <div class="title" style="align-items:flex-end; font:200; font-size: 32px">Admin Profile</div>
+    <div class="title" style="align-items:flex-end; font-size: medium">View Profile</div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div><i class="fa fa-user" style="font-size:100px;color:black; float: left"></i></div>
+        <h1>linky mahlalela</h1>
+    </div>
+</div>
+<br>
+<br>
+<div class="card1">
+    <div class="title">Personal Details</div>
+    <div class="features">
+        <ul style="list-style-type:none;">
+            <li><span>Gender:</span>Female</li>
+            <li><span>Full Name(s):</span>  Linky Prudence</li>
+            <li><span>Last Name:</span>  Mahlalela</li>
+            <li><span>Age:</span> 26</li>
+            <li><span>Status: </span> <button type="button" class="btn btn-success">Active</button></li>
+        </ul>
+    </div>
+</div>
+<div class="card1">
+    <div class="title">Contact Details</div>
+    <div class="features">
+        <ul style="list-style-type:none;">
+            <li><span>Email Address:</span> Edits</li>
+            <li><span>Phone-Number:</span> Storage</li>
+            <li><span>Tel-Number:</span> Pages</li>
+            <li><span>Physical-Address:</span> Hour free support</li>
+            @*<li><span>Work-Address </span> <button type="button" class="btn btn-success">Active</button></li>*@
+        </ul>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div class="card" style="text-align: center; align-items: center;">
+    <div><a href="#" class="btn">Update</a></div>
+</div>
+
